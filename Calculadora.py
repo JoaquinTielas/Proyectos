@@ -9,9 +9,20 @@ Texto = Entry(ventana, font = "Arial 12")                                       
 Texto.grid(row = 0, column = 0, columnspan = 4, padx = 0, pady = 5)                 #Ubico el cuadro de texto, columnspan indica cuantas columnas debe ocupar, padx e y son para indicar los espacios entre los demas objetos
 
 def click_boton(valor):
+    global i
     Texto.insert(i, valor)
     i = i + 1
 
+def borrar():
+    Texto.delete(0, END)
+    i = 0
+
+def resolver():
+    Operacion = Texto.get()
+    resultado = eval(Operacion)
+    Texto.delete(0, END)
+    Texto.insert(0,resultado)
+    
 boton1 = Button(ventana, text = "1", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton(1))      #Creo los botones
 boton2 = Button(ventana, text = "2", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton(2))
 boton3 = Button(ventana, text = "3", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton(3))
@@ -23,15 +34,15 @@ boton8 = Button(ventana, text = "8", width = 4, height = 1, font = "Arial 15", c
 boton9 = Button(ventana, text = "9", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton(9))
 boton0 = Button(ventana, text = "0", width = 9, height = 1, font = "Arial 15", command = lambda: click_boton(0))
 
-botonX = Button(ventana, text = "x", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("x"))
+botonX = Button(ventana, text = "x", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("*"))
 botonD = Button(ventana, text = "/", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("/"))
 botonS = Button(ventana, text = "+", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("+"))
 botonR = Button(ventana, text = "-", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("-"))
-botonI = Button(ventana, text = "=", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton())
+botonI = Button(ventana, text = "=", width = 4, height = 1, font = "Arial 15", command = resolver)
 botonP = Button(ventana, text = ".", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("."))
 botonParA = Button(ventana, text = "(", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton("("))
 botonParC = Button(ventana, text = ")", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton(")"))
-botonB = Button(ventana, text = "AC", width = 4, height = 1, font = "Arial 15", command = lambda: click_boton())
+botonB = Button(ventana, text = "AC", width = 4, height = 1, font = "Arial 15", command = borrar)
 
 
 boton1.grid(row = 4, column = 0, padx = 2, pady = 2)                                 #Ubico los botones
